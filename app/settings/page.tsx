@@ -1,8 +1,9 @@
+"use client";
 import React, { useState } from "react";
+import "../globals.css";
 
 const Settings = () => {
   const [activeTab, setActiveTab] = useState("editAccount");
-  //   const [selectedOptions, setSelectedOptions] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePasswordVisibility = () => {
@@ -16,14 +17,6 @@ const Settings = () => {
     { id: 4, label: "Notify me 5 days before subscription ends" },
     { id: 5, label: "Subscribe me to newsletters about new features" },
   ];
-
-  //   const handleCheckboxChange = (id) => {
-  //     setSelectedOptions((prev) =>
-  //       prev.includes(id)
-  //         ? prev.filter((optionId) => optionId !== id)
-  //         : [...prev, id]
-  //     );
-  // };
 
   const renderContent = () => {
     switch (activeTab) {
@@ -48,8 +41,6 @@ const Settings = () => {
                   >
                     <input
                       type="checkbox"
-                      //   checked={selectedOptions.includes(option.id)}
-                      //   onChange={() => handleCheckboxChange(option.id)}
                       className="form-checkbox text-blue-500"
                     />
                     <span>{option.label}</span>
@@ -61,140 +52,89 @@ const Settings = () => {
               <div>
                 <h2 className="my-2 text-lg font-medium">Change Password</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div className="flex flex-col">
-                    <label className="my-2 text-sm font-medium">
-                      Current Password
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Enter your current password"
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <button
-                        type="button"
-                        className="absolute right-3 top-2 text-gray-500"
-                        onClick={handleTogglePasswordVisibility}
-                      >
-                        {showPassword ? (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M13.875 18.825A10.05 10.05 0 0112 19c-5.523 0-10-4.477-10-10S6.477 0 12 0c.7 0 1.392.071 2.075.212"
-                            />
-                          </svg>
-                        ) : (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M3.055 11.13a9.965 9.965 0 011.07-1.514L3.04 "
-                            />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="flex flex-col">
-                    <label className="my-2 text-sm font-medium">
-                      New Password
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Enter your new password"
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <button
-                        type="button"
-                        className="absolute right-3 top-2 text-gray-500"
-                        onClick={handleTogglePasswordVisibility}
-                      >
-                        {showPassword ? (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M13.875 18.825A10.05"
-                            />
-                          </svg>
-                        ) : (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M.13 "
-                            />
-                          </svg>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="flex flex-col">
-                    <label className="my-2 text-sm font-medium">
-                      Confirm Password
-                    </label>
-                    <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Confirm your password"
-                        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                      <button
-                        type="button"
-                        className="absolute right-3 top-2 text-gray-500"
-                        onClick={handleTogglePasswordVisibility}
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+                  {["Current", "New", "Confirm"].map((label) => (
+                    <div className="flex flex-col" key={label}>
+                      <label className="my-2 text-sm font-medium">
+                        {label} Password
+                      </label>
+                      <div className="relative">
+                        <input
+                          type={showPassword ? "text" : "password"}
+                          placeholder={`Enter ${label.toLowerCase()} password`}
+                          className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <button
+                          type="button"
+                          className="absolute right-3 top-2 text-gray-500"
+                          onClick={handleTogglePasswordVisibility}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M16 "
-                          />
-                        </svg>
-                      </button>
+                          {showPassword ? "👁️" : "👁️‍🗨️"}
+                        </button>
+                      </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
                 <div className="flex justify-end py-4">
                   <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600">
                     Save Changes
+                  </button>
+                </div>
+              </div>
+              <hr />
+              <div>
+                <h2 className="my-2">Make My Account Inactive</h2>
+                <p>
+                  If you deactivate your account, you will stop receiving
+                  updatyes on new features and regular communications from
+                  Skillety as part of the services. Log in to your account again
+                  to reactivate it
+                </p>
+                <div className=" py-4">
+                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2 shadow-md transition duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                    Deactivate Account
+                  </button>
+                </div>
+              </div>
+              <hr />
+              <div className="my-2">
+                <h2 className="my-2">Delete My Account</h2>
+                <p>
+                  If you dekete your Skillety account, you will no longer
+                  receive Information about the matched jobs, followed employes,
+                  job alerts, shotlisted jobs and more You will lose access to
+                  all services on Skillety.
+                </p>
+                <div className=" py-4">
+                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg flex items-center gap-2 shadow-md transition duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                    Delete Account
                   </button>
                 </div>
               </div>
@@ -208,29 +148,33 @@ const Settings = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="mb-4">
-        <button
-          className={`${
-            activeTab === "editAccount"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-800"
-          } px-4 py-2 rounded-lg mr-2`}
-          onClick={() => setActiveTab("editAccount")}
-        >
-          Edit Account
-        </button>
-        <button
-          className={`${
-            activeTab === "myProfile"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-800"
-          } px-4 py-2 rounded-lg`}
-          onClick={() => setActiveTab("myProfile")}
-        >
-          My Profile
-        </button>
+      <div className="border-b">
+        <nav className="flex space-x-4">
+          <button
+            onClick={() => setActiveTab("editAccount")}
+            className={`py-2 px-4 text-sm font-medium ${
+              activeTab === "editAccount"
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-gray-500 hover:text-blue-500"
+            }`}
+          >
+            Edit Account
+          </button>
+          <button
+            onClick={() => setActiveTab("myProfile")}
+            className={`py-2 px-4 text-sm font-medium ${
+              activeTab === "myProfile"
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-gray-500 hover:text-blue-500"
+            }`}
+          >
+            My Profile
+          </button>
+        </nav>
       </div>
-      <div className="bg-white p-6 rounded-lg shadow-md">{renderContent()}</div>
+      <div className="bg-white p-6 mt-4 rounded-lg shadow">
+        {renderContent()}
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ const Sidenav = () => {
     { label: "My Searches", route: "/my-searches" },
     { label: "My Candidates", route: "/my-candidates" },
     { label: "Billing & Invoices", route: "/billing-invoices" },
-    { label: "Settings", route: "/Settings" },
+    { label: "Settings", route: "/settings" },
     { label: "Support", route: "/support" },
   ];
 
