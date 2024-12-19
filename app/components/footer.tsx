@@ -4,6 +4,7 @@ import Google from "../../public/google.png";
 import apple from "../../public/appstore.png";
 import logo from "../../public/logo.png";
 import footer from "../../public/footer-img.png";
+import React from "react";
 
 const Footer = () => (
   <footer className="bg-blue-100 px-3">
@@ -161,7 +162,7 @@ const Footer = () => (
           </ul>
         </div>
       </div>
-      <div>
+      <div className="flex flex-col items-center text-center">
         <Image
           className="h-11 w-auto"
           src={footer}
@@ -185,12 +186,12 @@ const Footer = () => (
             </button>
           </div>
         </div>
-        <div className="mb-5">
+        <div className="flex flex-col items-center text-center mb-5">
           <h2 className="font-semibold text-2xl mt-6">Apply on the go</h2>
           <p className="font-medium mt-3">
             Get Real-time job updates on our App
           </p>
-          <div className=" flex gap-4 mt-3">
+          <div className="flex gap-4 mt-3 justify-center">
             <Link href="https://play.google.com/store/apps" target="_blank">
               <Image
                 src={Google}
