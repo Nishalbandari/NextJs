@@ -25,7 +25,7 @@ export default function RootLayout({
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
   return (
     <html lang="en">
-      <body>
+      <body className="bg-white">
         <Header isMobile={isMobile} toggleSidebar={toggleSidebar} />
         <div className="flex mt-[9rem] relative">
           {isMobile ? (
